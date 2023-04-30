@@ -13,7 +13,7 @@ const DEFAULT_VARIANT = VARIANT_OPTIONS[0];
 function ToastPlayground() {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
-  const { toasts, addToast } = React.useContext(ToastContext);
+  const { addToast } = React.useContext(ToastContext);
 
   const handleSubmit = (e) => {
     e.stopPropagation();
@@ -29,7 +29,7 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {toasts.length > 0 && <ToastShelf toasts={toasts} />}
+      <ToastShelf />
       <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label
