@@ -5,7 +5,20 @@ import { ToastContext } from '../ToastProvider';
 import styles from './ToastShelf.module.css';
 
 function ToastShelf() {
-  const { toasts, removeToast } = React.useContext(ToastContext);
+  const { toasts, removeToast, clearToasts } = React.useContext(ToastContext);
+
+  React.useEffect(() => {
+    const closeAllModals = (event) => {
+      if (event.code === 'Escape') {
+        clearToasts();
+      }
+    };
+    window.addEventListener('keyup', closeAllModals);
+
+    return () => {
+      window.removeEventListener('keyup', closeAllModals);
+    };
+  }, [clearToasts]);
 
   return (
     <ol className={styles.wrapper}>
