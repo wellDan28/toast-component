@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const useEscapeKey = (func) => {
+export const useEscapeKey = (callback) => {
   React.useEffect(() => {
     const closeAllModals = (event) => {
       if (event.code === 'Escape') {
-        func();
+        callback(event);
       }
     };
     window.addEventListener('keydown', closeAllModals);
@@ -12,5 +12,5 @@ export const useEscapeKey = (func) => {
     return () => {
       window.removeEventListener('keydown', closeAllModals);
     };
-  }, [func]);
+  }, [callback]);
 };

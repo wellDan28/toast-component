@@ -12,9 +12,9 @@ function ToastProvider({ children }) {
       ...current,
       { message, variant, id: crypto.randomUUID() },
     ]);
-  const clearToasts = () => {
+  const clearToasts = React.useCallback(() => {
     setToasts([]);
-  };
+  }, [setToasts]);
   return (
     <ToastContext.Provider
       value={{ toasts, removeToast, addToast, clearToasts }}
